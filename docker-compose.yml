@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  backend-service:
+    container_name: backend-service
+    build: ./backend
+    ports:
+      - "8050:8050"
+    external_links:
+      - mysqldb:mysqldb
+    networks:
+      - main-network
+  endpoint-apps:
+    container_name: endpoint-apps
+    build: ./endpoint
+    ports:
+      - "8000:8000"
+    networks:
+      - main-network
+networks:
+    main-network:
+      external: true
+  
